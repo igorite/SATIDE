@@ -13,6 +13,7 @@ class BlockContainer(QMdiArea):
         self.blocks = []
         self.link_status = False
         self.link_status_id = None
+        self.cursor = None
         self.links = []
         self.links_id = 0
         self.id = 0
