@@ -56,7 +56,7 @@ class BlockFrame(QFrame):
         self.create_connectors()
 
     def set_title(self, title):
-        self.title_frame = Title(self)
+        self.title_frame = QFrame(self)
         self.title_frame.setObjectName("block_title")
         self.layout.setMenuBar(self.title_frame)
         self.title_frame.setLayout(self.title_layout)
@@ -96,16 +96,6 @@ class BlockFrame(QFrame):
 
     def create_link_down(self):
         self.block_container.create_link_down(self.id)
-
-
-class Title(QFrame):
-
-    def __init__(self, parent):
-        self.parent = parent
-        QFrame.__init__(self, parent)
-
-    def mousePressEvent(self, event):
-        self.parent.block_container.create_link(self.parent.id)
 
 
 class Block(QMdiSubWindow):
