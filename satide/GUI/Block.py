@@ -1,0 +1,136 @@
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
+
+
+class BlockFrame(QFrame):
+
+    def __init__(self, parent, block_container, block_title=None):
+        """
+
+        :type parent: Block
+        :type block_container: BlockContainer
+        """
+        self.parent = parent
+        self.id = parent.id
+        self.block_container = block_container
+        self.block_title = block_title
+        self.title_frame = None
+        self.button = None
+        self.connect_button = None
+        self.options_button = None
+        QFrame.__init__(self)
+        self.body_frame = QFrame()
+        self.body_frame.setObjectName("block_body")
+
+        self.down_connector_frame = QFrame()
+        self.down_connector_layout = QGridLayout()
+        self.down_connector_layout.setContentsMargins(0, 0, 0, 0)
+        self.down_connector_layout.setSpacing(0)
+        self.down_connector_frame.setLayout(self.down_connector_layout)
+        self.layout = QGridLayout()
+        size_policy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        self.layout.setSpacing(0)
+        self.layout.setVerticalSpacing(0)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSizeConstraint(0)
+        self.body_layout = QGridLayout()
+        self.body_layout.setContentsMargins(0, 0, 0, 0)
+        self.body_layout.setSpacing(20)
+        self.button2 = QPushButton("hello")
+        self.button2.clicked.connect(self.create_link)
+        self.set_title(self.block_title)
+        self.setLayout(self.layout)
+        self.layout.addWidget(self.body_frame)
+        self.layout.addWidget(self.down_connector_frame)
+        self.body_layout.addWidget(self.button2, 1, 0)
+        self.body_frame.setLayout(self.body_layout)
+
+    def set_title(self, title):
+        self.title_frame = Title(self)
+        self.title_frame.setObjectName("block_title")
+        self.layout.setMenuBar(self.title_frame)
+        title_layout = QGridLayout()
+        self.title_frame.setLayout(title_layout)
+        self.button = QPushButton(title)
+        self.button.setProperty("title", "True")
+        self.button.setToolTip("Hello")
+        self.button.setMinimumSize(QSize(50, 30))
+        self.body_layout.addWidget(self.button)
+
+
+        self.connect_button = QPushButton("")
+        self.connect_button.setProperty("connect", "True")
+        self.connect_button.setIcon(QIcon("img/connectorUP.png"))
+        self.connect_button.setIconSize(QSize(30, 30))
+        self.connect_button.clicked.connect(self.create_link)
+        title_layout.addWidget(self.connect_button, 0, 1)
+        title_layout.setSizeConstraint(0)
+        title_layout.setContentsMargins(0, 0, 0, 0)
+
+        self.options_button = QPushButton()
+        self.options_button.setProperty("img", "True")
+        self.options_button.setIconSize(QSize(20, 20))
+        self.options_button.setIcon(QIcon("img/settings.png"))
+        self.body_layout.addWidget(self.options_button, 0, 1)
+        self.body_layout.setColumnStretch(0, 150)
+
+        self.connect_button_down = QPushButton("")
+        self.connect_button_down.setProperty("connect", "True")
+        self.connect_button_down.setIcon(QIcon("img/connectorDOWN.png"))
+        self.connect_button_down.setIconSize(QSize(30, 30))
+        self.connect_button_down.clicked.connect(self.create_link)
+        self.down_connector_layout.addWidget(self.connect_button_down)
+
+
+    def create_link(self):
+        print(self.id)
+        self.block_container.create_link(self.id)
+
+
+
+class Title(QFrame):
+
+    def __init__(self, parent):
+        self.parent = parent
+        QFrame.__init__(self, parent)
+
+    def mousePressEvent(self, event):
+        self.parent.block_container.create_link(self.parent.id)
+
+
+class Block(QMdiSubWindow):
+
+    def __init__(self, block_container, block_id):
+        """
+
+        :type block_container: BlockContainer
+        """
+        self.block_container = block_container
+        self.id = block_id
+        QMdiSubWindow.__init__(self)
+        self.oldPos = self.pos()
+        self.width()
+
+        self.link = [0, 0, 0, 0]
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowTitle('Custom')
+
+        self.resize(self.block_container.distance * 4, self.block_container.distance * 2)
+        self.setWidget(BlockFrame(self, self.block_container))
+
+
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+
+
+    def mouseMoveEvent(self, event):
+        delta = QPoint(event.globalPos() - self.oldPos)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.oldPos = event.globalPos()
+
+    def block_resize(self):
+        self.resize(self.block_container.distance * 4, self.block_container.distance * 2)
