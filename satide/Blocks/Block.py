@@ -19,6 +19,7 @@ class BlockFrame(QFrame):
         self.title_frame = None
         self.button = None
         self.connect_button = None
+        self.connect_button_down = None
         self.options_button = None
         QFrame.__init__(self)
         self.body_frame = QFrame()
@@ -29,6 +30,10 @@ class BlockFrame(QFrame):
         self.down_connector_layout.setContentsMargins(0, 0, 0, 0)
         self.down_connector_layout.setSpacing(0)
         self.down_connector_frame.setLayout(self.down_connector_layout)
+
+        self.title_layout = QGridLayout()
+
+
         self.layout = QGridLayout()
 
         self.layout.setSpacing(0)
@@ -45,28 +50,28 @@ class BlockFrame(QFrame):
         self.layout.addWidget(self.down_connector_frame, 1, 0)
         self.body_layout.addWidget(self.button2, 1, 0)
         self.body_frame.setLayout(self.body_layout)
+        self.create_connectors()
 
     def set_title(self, title):
         self.title_frame = Title(self)
         self.title_frame.setObjectName("block_title")
         self.layout.setMenuBar(self.title_frame)
-        title_layout = QGridLayout()
-        self.title_frame.setLayout(title_layout)
+        self.title_frame.setLayout(self.title_layout)
         self.button = QPushButton(title)
         self.button.setProperty("title", "True")
         self.button.setToolTip("Hello")
         self.button.setMinimumSize(QSize(50, 30))
         self.body_layout.addWidget(self.button)
 
-
+    def create_connectors(self):
         self.connect_button = QPushButton("")
         self.connect_button.setProperty("connect", "True")
         self.connect_button.setIcon(QIcon("img/connectorUP.png"))
         self.connect_button.setIconSize(QSize(30, 30))
         self.connect_button.clicked.connect(self.create_link)
-        title_layout.addWidget(self.connect_button, 0, 1)
-        title_layout.setSizeConstraint(0)
-        title_layout.setContentsMargins(0, 0, 0, 0)
+        self.title_layout.addWidget(self.connect_button, 0, 1)
+        self.title_layout.setSizeConstraint(0)
+        self.title_layout.setContentsMargins(0, 0, 0, 0)
 
         self.options_button = QPushButton()
         self.options_button.setProperty("img", "True")

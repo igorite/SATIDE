@@ -1,7 +1,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import numpy as np
-from satide.GUI.Block import Block
+from satide.Blocks.Block import Block
 
 from PyQt5.QtWidgets import *
 
@@ -92,7 +92,7 @@ class BlockContainer(QMdiArea):
 
         painter.end()
         self.resize(self.width(), self.height()+1)
-        self.resize(self.width(), self.height())
+        self.resize(self.width(), self.height()-1)
 
     def mouseMoveEvent(self, event):
         self.repaint()
