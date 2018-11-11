@@ -16,7 +16,6 @@ class BlockContainer(QMdiArea):
         self.links = []
         self.links_id = 0
         self.id = 0
-        self.cursor = QCursor()
         self.paint = 0
         self.distance = 70
         QMdiArea.__init__(self)
@@ -86,8 +85,11 @@ class BlockContainer(QMdiArea):
                 start_point = QPoint(start.pos())
                 start_x = np.round(start_point.x() + (start.width() / 2), 0)
                 cursor = self.cursor.pos()
-                line = (start_x, start_point.y() + start.height()-38, cursor.x(), cursor.y())
 
+                line = (start_x,
+                        start_point.y() + start.height()-38,
+                        self.mapFromGlobal(cursor).x(),
+                        self.mapFromGlobal(cursor).y())
                 painter.drawLine(line[0], line[1] + 20, line[2], line[3])
 
         painter.end()
