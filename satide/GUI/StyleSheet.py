@@ -3,7 +3,28 @@ stylesheet = """
     
     QMdiSubWindow{
         background-color: transparent
-             } 
+             }
+             
+    QFrame#central_frame{
+        background-color: #222;
+        }
+        
+    QFrame#mdi_frame{
+        background-color: #444;
+        border: 2px solid #999999;
+        border-radius: 10px;
+        }
+        
+    QMdiArea{
+        border : 2px solid #999999;
+        border-radius: 2px;
+        
+    }
+    QFrame#bar{
+        border:2px solid black;
+        font-size:20px
+    }
+    
     QFrame#block_title{
         background-color: transparent;
     }
@@ -22,7 +43,7 @@ stylesheet = """
              
     QPushButton{
         color: #FFFFFF;
-        background-color: #000;
+        background-color: #BBB;
         border:2 px;
         font-size: 16px
              }
@@ -40,20 +61,14 @@ stylesheet = """
     
     QPushButton:hover[connect=True]{
         background-color : transparent
-    }
-    
-             
-    QPushButton:hover{
-        background-color: #111111;
-             }
-             
+    }   
              
     QToolBar{
-            background : #222222
+            border:2px solid #999999;
+            border-radius: 10px;
+            background-color : #333;
         
         }
-    QToolBar::handle{
-        image: url(img/drag.png)
-        }    
+    
              
         """

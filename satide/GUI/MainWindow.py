@@ -1,6 +1,6 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from satide.GUI.BlockContainer import BlockContainer
+from satide.Blocks.BlockContainer import BlockContainer
 from satide.GUI.StyleSheet import stylesheet
 from PyQt5.QtWidgets import *
 
@@ -13,7 +13,6 @@ class MainWindow(QMainWindow):
 
         # Create Window
         self.create_window()
-
         QWidget.__init__(self)
         self.resize(800, 800)
         self.center()
@@ -23,22 +22,50 @@ class MainWindow(QMainWindow):
 
         # Create block container
         self.mdi = BlockContainer(self)
-        scrollbar = QScrollBar()
-        scrollbar.setFixedWidth(50)
-        scrollbar.setFixedHeight(50)
-        scrollbar.show()
-        scrollbar.setMinimum(70)
-        self.mdi.addScrollBarWidget(scrollbar, Qt.AlignTop)
-        self.setCentralWidget(self.mdi)
-        self.show()
+        self.mdi_frame = QFrame()
+        self.mdi_frame.setObjectName("mdi_frame")
+        self.mdi_frame_layout = QGridLayout()
+        self.mdi_frame.setLayout(self.mdi_frame_layout)
+        self.mdi_frame_layout.addWidget(self.mdi, 0, 1)
 
+        # Create bar
+        self.bar = QFrame()
+        self.bar.setObjectName("bar")
+        self.bar_layout = QGridLayout()
+        self.create_bar()
+
+        # Create central frame
+        self.central_frame = QFrame()
+        self.central_frame.setObjectName("central_frame")
+        self.central_frame_layout = QGridLayout()
+        self.central_frame.setLayout(self.central_frame_layout)
+        self.central_frame_layout.addWidget(self.bar)
+        self.central_frame_layout.addWidget(self.mdi_frame)
+        self.setCentralWidget(self.central_frame)
+
+        # Set StyleSheet
         self.setStyleSheet(stylesheet)
 
         # Create Toolbar
         self.create_toolbar()
 
         # Execute app
+        self.show()
         self.app.exec_()
+
+
+    def create_bar(self):
+        self.bar.setLayout(self.bar_layout)
+
+        # Create test case creator
+        self.blocks_button = QPushButton("oops")
+        self.bar_layout.addWidget(self.blocks_button, 0, 0)
+
+
+        # create Block creator
+        self.steps_button = QPushButton("hey")
+        self.bar_layout.addWidget(self.steps_button, 0, 1)
+
 
     def create_window(self):
         self.app = QApplication([])
@@ -54,8 +81,9 @@ class MainWindow(QMainWindow):
 
     def create_toolbar(self):
         toolbar_box = QToolBar(self)
+        toolbar_box.setOrientation(Qt.Vertical)
         toolbar_box.setIconSize(QSize(40, 40))
-        self.toolbar = self.addToolBar(Qt.LeftToolBarArea, toolbar_box)
+        self.mdi_frame_layout.addWidget(toolbar_box, 0, 0)
 
 
         exit_act = QAction(QIcon("img/add_block.png"), "Add a new block", self)
