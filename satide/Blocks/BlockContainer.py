@@ -1,7 +1,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import numpy as np
-from satide.GUI.Block import Block
+from satide.Blocks.Block import Block
 
 from PyQt5.QtWidgets import *
 
