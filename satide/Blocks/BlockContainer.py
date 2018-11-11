@@ -143,6 +143,7 @@ class BlockContainer(QMdiArea):
     def create_block(self):
         b = Block(self, self.id)
         self.addSubWindow(b)
+        b.move(200, 200)
         b.block_resize()
         b.show()
         self.blocks.append([self.id, b])

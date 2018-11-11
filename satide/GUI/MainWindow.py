@@ -11,7 +11,7 @@ import os
 class MainWindow(QMainWindow):
 
     def __init__(self, dir_name = None):
-        self.app = None
+        self.app = QApplication([])
         self.toolbar = None
         self.blocks_button = None
         self.steps_button = None
@@ -23,9 +23,10 @@ class MainWindow(QMainWindow):
         # Create Window
         self.create_window()
         QWidget.__init__(self)
-        self.resize(800, 800)
-        self.center()
-
+        self.showMaximized()
+        screen_resolution = self.app.desktop().screenGeometry()
+        screen_width, screen_height = screen_resolution.width(), screen_resolution.height()
+        self.resize(screen_width,screen_height)
         # Load icon
         self.setWindowIcon(QIcon(os.path.join(self.dir_name, "img/logo_small.png")))
         # Create block container
@@ -38,6 +39,8 @@ class MainWindow(QMainWindow):
 
         # Create bar
         self.bar = QFrame()
+        self.bar.setMinimumHeight(60)
+        self.bar.setMaximumHeight(60)
         self.bar.setObjectName("bar")
         self.bar_layout = QGridLayout()
         self.create_bar()
@@ -53,6 +56,7 @@ class MainWindow(QMainWindow):
 
         # Create Steps Frame
         self.steps = Steps()
+        self.steps.setObjectName("block_creator")
         self.steps_layout = QGridLayout()
 
         # Set StyleSheet
@@ -70,17 +74,18 @@ class MainWindow(QMainWindow):
 
         # Create test case creator
         self.blocks_button = QPushButton("oops")
+        self.blocks_button.clicked.connect(self.show_test_case_creator)
         self.bar_layout.addWidget(self.blocks_button, 0, 0)
 
 
         # create Block creator
         self.steps_button = QPushButton("Steps")
+        self.steps_button.clicked.connect(self.show_block_creator)
         self.bar_layout.addWidget(self.steps_button, 0, 1)
 
 
     def create_window(self):
-        self.app = QApplication([])
-        # self.app.setStyle('fusion')
+        self.app.setStyle('fusion')
         self.app.setApplicationName("SATIDE")
 
     def center(self):
@@ -121,3 +126,15 @@ class MainWindow(QMainWindow):
             event.accept()
         else:
             event.ignore()
+
+    def show_test_case_creator(self):
+        self.central_frame_layout.removeWidget(self.mdi_frame)
+        self.steps.hide()
+        self.central_frame_layout.addWidget(self.mdi_frame)
+        self.mdi_frame.show()
+
+    def show_block_creator(self):
+        self.central_frame_layout.removeWidget(self.mdi_frame)
+        self.mdi_frame.hide()
+        self.central_frame_layout.addWidget(self.steps)
+        self.steps.show()

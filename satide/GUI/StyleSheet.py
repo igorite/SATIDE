@@ -15,6 +15,12 @@ stylesheet = """
         border-radius: 10px;
         }
         
+     QFrame#block_creator{
+        background-color: #444;
+        border: 2px solid #999999;
+        border-radius: 10px;
+        }
+        
     QMdiArea{
         border : 2px solid #999999;
         border-radius: 2px;
