@@ -92,7 +92,7 @@ class BlockContainer(QMdiArea):
 
         painter.end()
         self.resize(self.width(), self.height()+1)
-        self.resize(self.width(), self.height())
+        self.resize(self.width(), self.height()-1)
 
     def mouseMoveEvent(self, event):
         self.repaint()
