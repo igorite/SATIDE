@@ -1,15 +1,24 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from satide.Blocks.BlockContainer import BlockContainer
+from satide.Steps.Steps import Steps
 from satide.GUI.StyleSheet import stylesheet
 from PyQt5.QtWidgets import *
+import os
+
 
 
 class MainWindow(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, dir_name = None):
         self.app = None
         self.toolbar = None
+        self.blocks_button = None
+        self.steps_button = None
+        if dir_name is not None:
+            self.dir_name = dir_name
+        else:
+            self.dir_name = os.path.dirname(__file__)
 
         # Create Window
         self.create_window()
@@ -18,8 +27,7 @@ class MainWindow(QMainWindow):
         self.center()
 
         # Load icon
-        self.setWindowIcon(QIcon("img/logo_small.png"))
-
+        self.setWindowIcon(QIcon(os.path.join(self.dir_name, "img/logo_small.png")))
         # Create block container
         self.mdi = BlockContainer(self)
         self.mdi_frame = QFrame()
@@ -43,6 +51,10 @@ class MainWindow(QMainWindow):
         self.central_frame_layout.addWidget(self.mdi_frame)
         self.setCentralWidget(self.central_frame)
 
+        # Create Steps Frame
+        self.steps = Steps()
+        self.steps_layout = QGridLayout()
+
         # Set StyleSheet
         self.setStyleSheet(stylesheet)
 
@@ -51,7 +63,6 @@ class MainWindow(QMainWindow):
 
         # Execute app
         self.show()
-        self.app.exec_()
 
 
     def create_bar(self):
@@ -63,7 +74,7 @@ class MainWindow(QMainWindow):
 
 
         # create Block creator
-        self.steps_button = QPushButton("hey")
+        self.steps_button = QPushButton("Steps")
         self.bar_layout.addWidget(self.steps_button, 0, 1)
 
 

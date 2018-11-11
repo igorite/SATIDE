@@ -1,4 +1,7 @@
 from satide.GUI.MainWindow import MainWindow
+import os
 
-MainWindow()
+dir_name = os.path.dirname(__file__)
 
+window = MainWindow(dir_name)
+window.app.exec_()

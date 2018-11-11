@@ -26,6 +26,7 @@ class BlockFrame(QFrame):
         self.button = None
         self.connect_button = None
         self.options_button = None
+        self.connect_button_down = None
         QFrame.__init__(self)
         self.body_frame = QFrame()
         self.body_frame.setObjectName("block_body")
@@ -78,7 +79,7 @@ class BlockFrame(QFrame):
         self.options_button = QPushButton()
         self.options_button.setProperty("img", "True")
         self.options_button.setIcon(QIcon("img/settings.png"))
-        self.options_button.setMinimumSize(20,20)
+        self.options_button.setMinimumSize(20, 20)
         self.body_layout.addWidget(self.options_button, 0, 1)
         self.body_layout.setColumnStretch(0, 150)
 
@@ -136,6 +137,7 @@ class Block(QMdiSubWindow):
         delta = QPoint(event.globalPos() - self.oldPos)
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.oldPos = event.globalPos()
+
 
     def block_resize(self):
         self.resize(self.block_container.distance * 4, self.block_container.distance * 2)
