@@ -3,7 +3,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-
 class BlockFrame(QFrame):
 
     def __init__(self, parent, block_container, block_title=None):

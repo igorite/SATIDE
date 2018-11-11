@@ -10,7 +10,7 @@ import os
 
 class MainWindow(QMainWindow):
 
-    def __init__(self, dir_name = None):
+    def __init__(self, dir_name=None):
         self.app = QApplication([])
         self.toolbar = None
         self.blocks_button = None
@@ -26,9 +26,11 @@ class MainWindow(QMainWindow):
         self.showMaximized()
         screen_resolution = self.app.desktop().screenGeometry()
         screen_width, screen_height = screen_resolution.width(), screen_resolution.height()
-        self.resize(screen_width,screen_height)
+        self.resize(screen_width, screen_height)
+
         # Load icon
         self.setWindowIcon(QIcon(os.path.join(self.dir_name, "img/logo_small.png")))
+
         # Create block container
         self.mdi = BlockContainer(self)
         self.mdi_frame = QFrame()
