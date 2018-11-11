@@ -98,26 +98,6 @@ class BlockContainer(QMdiArea):
         self.repaint()
         self.update()
 
-    def create_link(self, block_id):
-
-        if self.link_status is False:
-            for link in self.links:
-                if link[0] == block_id:
-                    self.link_status = True
-                    self.link_status_id = block_id
-                    link[1] = None
-                    return
-            self.links.append([block_id, None])
-            self.link_status = True
-            self.link_status_id = block_id
-            return
-        if self.link_status is True:
-            for link in self.links:
-                if link[0] == self.link_status_id:
-                    link[1] = block_id
-            self.link_status_id = None
-            self.link_status = False
-
     def create_link_down(self, block_id):
         if self.link_status is False:
             for link in self.links:
