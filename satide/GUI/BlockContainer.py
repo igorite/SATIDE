@@ -78,7 +78,7 @@ class BlockContainer(QMdiArea):
                 start_x = np.round(start_point.x()+(start.width()/2), 0)
                 end_x = np.round(end_point.x()+(end.width()/2), 0)
 
-                line = (start_x, start_point.y()+start.height()-40, end_x, end_point.y()+18)
+                line = (start_x, start_point.y()+start.height()-38, end_x, end_point.y()+18)
 
                 painter.drawLine(line[0], line[1]+20, line[2], line[3])
             elif start is not None:
@@ -86,7 +86,9 @@ class BlockContainer(QMdiArea):
                 start_point = QPoint(start.pos())
                 start_x = np.round(start_point.x() + (start.width() / 2), 0)
                 cursor = self.cursor.pos()
-                line = (start_x, start_point.y() + start.height()-40, cursor.x(), cursor.y())
+                line = (start_x, start_point.y() + start.height()-38, cursor.x(), cursor.y())
+
+                painter.drawLine(line[0], line[1] + 20, line[2], line[3])
 
         painter.end()
         self.resize(self.width(), self.height()+1)
