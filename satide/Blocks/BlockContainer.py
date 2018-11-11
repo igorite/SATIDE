@@ -107,8 +107,7 @@ class BlockContainer(QMdiArea):
                     self.link_status_id = block_id
                     link[1] = None
                     return
-            else:
-                self.links.append([block_id, None])
+            self.links.append([block_id, None])
             self.link_status = True
             self.link_status_id = block_id
             return
@@ -118,6 +117,34 @@ class BlockContainer(QMdiArea):
                     link[1] = block_id
             self.link_status_id = None
             self.link_status = False
+
+    def create_link_down(self, block_id):
+        if self.link_status is False:
+            for link in self.links:
+                if link[0] == block_id:
+                    self.link_status = True
+                    self.link_status_id = block_id
+                    link[1] = None
+                    return
+            self.links.append([block_id, None])
+            self.link_status = True
+            self.link_status_id = block_id
+
+
+    def create_link_up(self, block_id):
+
+        if self.link_status is True:
+
+            if self.link_status_id == block_id:
+                return
+
+            for link in self.links:
+                if link[0] == self.link_status_id:
+                    link[1] = block_id
+            self.link_status_id = None
+            self.link_status = False
+
+
 
     def mousePressEvent(self, event):
         if self.link_status is True:

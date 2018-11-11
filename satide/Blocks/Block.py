@@ -40,7 +40,6 @@ class BlockFrame(QFrame):
         self.layout.setSizeConstraint(0)
         self.body_layout = QGridLayout()
         self.button2 = QPushButton("hello")
-        self.button2.clicked.connect(self.create_link)
         self.set_title(self.block_title)
         self.setLayout(self.layout)
         self.layout.addWidget(self.body_frame, 0, 0)
@@ -65,7 +64,7 @@ class BlockFrame(QFrame):
         self.connect_button.setProperty("connect", "True")
         self.connect_button.setIcon(QIcon("img/connectorUP.png"))
         self.connect_button.setIconSize(QSize(30, 30))
-        self.connect_button.clicked.connect(self.create_link)
+        self.connect_button.clicked.connect(self.create_link_up)
         self.title_layout.addWidget(self.connect_button, 0, 1)
         self.title_layout.setSizeConstraint(0)
         self.title_layout.setContentsMargins(0, 0, 0, 0)
@@ -81,14 +80,15 @@ class BlockFrame(QFrame):
         self.connect_button_down.setProperty("connect", "True")
         self.connect_button_down.setIcon(QIcon("img/connectorDOWN.png"))
         self.connect_button_down.setIconSize(QSize(30, 30))
-        self.connect_button_down.clicked.connect(self.create_link)
+        self.connect_button_down.clicked.connect(self.create_link_down)
         self.down_connector_layout.addWidget(self.connect_button_down)
 
 
-    def create_link(self):
-        print(self.id)
-        self.block_container.create_link(self.id)
+    def create_link_up(self):
+        self.block_container.create_link_up(self.id)
 
+    def create_link_down(self):
+        self.block_container.create_link_down(self.id)
 
 
 class Title(QFrame):
