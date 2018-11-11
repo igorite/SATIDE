@@ -16,7 +16,12 @@ class BlockFrame(QFrame):
         self.id = parent.id
         self.block_container = block_container
         self.distance = self.block_container.distance
-        self.block_title = block_title
+
+        if block_title is None:
+            self.block_title = str(self.id)
+        else:
+            self.block_title = block_title
+
         self.title_frame = None
         self.button = None
         self.connect_button = None
@@ -55,6 +60,7 @@ class BlockFrame(QFrame):
         self.layout.setMenuBar(self.title_frame)
         self.title_frame.setLayout(self.title_layout)
         self.button = QPushButton(title)
+        self.button.setMinimumHeight(20)
         self.button.setProperty("title", "True")
         self.button.setToolTip("Hello")
         self.body_layout.addWidget(self.button)
