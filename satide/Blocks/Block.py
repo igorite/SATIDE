@@ -82,6 +82,14 @@ class BlockFrame(QFrame):
         self.body_layout.addWidget(self.options_button, 0, 1)
         self.body_layout.setColumnStretch(0, 150)
 
+        self.close_button = QPushButton()
+        self.close_button.setProperty("img", "True")
+        self.close_button.setIcon(QIcon("img/close.png"))
+        self.close_button.setMinimumSize(20, 20)
+        self.close_button.clicked.connect(self.close)
+        self.body_layout.addWidget(self.close_button, 0, 3)
+
+
         self.connect_button_down = QPushButton("")
         self.connect_button_down.setProperty("connect", "True")
         self.connect_button_down.setIcon(QIcon("img/connectorDOWN.png"))
