@@ -9,6 +9,24 @@ stylesheet = """
         background-color: #222;
         }
         
+    QLabel{
+        color:#FFF;
+        text-align:right;
+    }
+    
+    BaseBlock{
+        color: #FFF;
+        background-color: #822;
+        border-radius: 20px;
+    }
+    
+    
+    BaseVariable{
+        background-color: #202080;
+        border: 1px solid white;
+        border-radius: 5px;
+    }
+        
     QFrame#mdi_frame{
         background-color: #444;
         border: 2px solid #999999;
@@ -51,9 +69,10 @@ stylesheet = """
     
              
     QPushButton{
-        color: #FFFFFF;
-        background-color: #BBB;
-        border:2 px;
+        color: #ffffff;
+        background-color: #337190;
+        border:2px solid #1d4274;
+        border-radius: 5px;
         font-size: 16px
              }
     QPushButton[img=True]{
