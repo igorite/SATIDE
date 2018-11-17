@@ -2,7 +2,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from satide.Core.Data import *
-from satide.Blocks.Block import BaseBlock, BaseVariable
 from satide.BlockCreator.BlockCreatorContainer import BlockCreatorContainer
 from satide.BlockCreator.BlockCreatorToolbar import BlockCreatorToolbar
 

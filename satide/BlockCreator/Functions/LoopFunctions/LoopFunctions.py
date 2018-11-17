@@ -2,13 +2,13 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from satide.Core.Data import *
-from satide.Blocks.Block import BaseBlock, BaseVariable
+from satide.BlockCreator.Functions.BaseFunctions import BaseVariable,BaseFunction
 
 
-class ForBlock(BaseBlock):
+class ForBlock(BaseFunction):
 
     def __init__(self):
-        BaseBlock.__init__(self)
+        BaseFunction.__init__(self)
         self.distance = 70
         self.layout = QGridLayout()
         self.setLayout(self.layout)

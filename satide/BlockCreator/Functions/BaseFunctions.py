@@ -4,9 +4,13 @@ from PyQt5.QtWidgets import *
 from satide.Core.Data import *
 
 
-class BlockCreatorContainer(QFrame):
+class BaseFunction(QFrame):
 
     def __init__(self):
-
         QFrame.__init__(self)
-        self.setObjectName("block_creator")
+
+
+class BaseVariable(QFrame):
+
+    def __init__(self):
+        QFrame.__init__(self)
