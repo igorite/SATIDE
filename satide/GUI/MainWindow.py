@@ -1,12 +1,11 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from satide.Blocks.BlockContainer import BlockContainer
-from satide.Steps.Steps import Steps
 from satide.GUI.StyleSheet import stylesheet
 from PyQt5.QtWidgets import *
 import os
-
-
+from satide.BlockCreator.Functions.LoopFunctions.LoopFunctions import ForBlock
+from satide.BlockCreator.BlockCreatorFrame import BlockCreatorFrame
 
 class MainWindow(QMainWindow):
 
@@ -56,10 +55,12 @@ class MainWindow(QMainWindow):
         self.central_frame_layout.addWidget(self.mdi_frame)
         self.setCentralWidget(self.central_frame)
 
+
         # Create Steps Frame
-        self.steps = Steps()
+        self.steps = BlockCreatorFrame()
         self.steps.setObjectName("block_creator")
         self.steps_layout = QGridLayout()
+        self.steps.setLayout(self.steps_layout)
 
         # Set StyleSheet
         self.setStyleSheet(stylesheet)
@@ -140,3 +141,5 @@ class MainWindow(QMainWindow):
         self.mdi_frame.hide()
         self.central_frame_layout.addWidget(self.steps)
         self.steps.show()
+        block = ForBlock()
+        self.steps_layout.addWidget(block)
