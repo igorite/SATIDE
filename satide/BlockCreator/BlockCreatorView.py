@@ -6,5 +6,15 @@ from satide.Core.Data import *
 
 class BlockCreatorView(QFrame):
 
-    def __init__(self):
+    def __init__(self, parent):
+        self.parent = parent
         QFrame.__init__(self)
+        self.layout = QGridLayout()
+        self.setLayout(self.layout)
+
+    def load(self):
+        pass
+
+
+    def add_function(self, function_object):
+        self.layout.addWidget(function_object, 0, 0)

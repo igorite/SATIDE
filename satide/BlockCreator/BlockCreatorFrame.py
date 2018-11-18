@@ -10,7 +10,7 @@ class BlockCreatorFrame(QFrame):
 
     def __init__(self):
         QFrame.__init__(self)
-        self.toolbar = QToolBar()
+        self.toolbar = QToolBar(self)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
@@ -20,8 +20,9 @@ class BlockCreatorFrame(QFrame):
 
 
         # Add Block Creator Container
-        self.creator_container = BlockCreatorContainer()
+        self.creator_container = BlockCreatorContainer(self)
         self.layout.addWidget(self.creator_container, 0, 1)
 
 
 
+ 

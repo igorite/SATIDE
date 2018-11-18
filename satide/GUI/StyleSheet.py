@@ -14,12 +14,20 @@ stylesheet = """
         text-align:right;
     }
     
-    BaseBlock{
+    BaseFunction{
         color: #FFF;
         background-color: #822;
         border-radius: 20px;
     }
     
+    BlockCreatorView{
+        background-color: #102020;
+        
+    }
+    
+    BlockCreatorFunctions{
+        border: 2px solid white
+    }
     
     BaseVariable{
         background-color: #202080;
