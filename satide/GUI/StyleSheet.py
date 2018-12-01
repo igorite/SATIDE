@@ -12,6 +12,32 @@ stylesheet = """
     QLabel{
         color:#FFF;
         text-align:right;
+        font: 14px;
+    }
+    
+    PopUpWindow{
+        background-color: #222;
+    }
+    
+    QLabel#pop_up_title {
+        font: bold 16px;
+    }
+    
+    QFrame#pop_up_title_bar{
+        background-color: #111;
+        font: bold 16px;
+    }
+    
+    QPushButton#close{
+        background-color: #111;
+        border: 0px solid black
+    }
+    
+    
+    QLineEdit{
+        background-color: #444;
+        color: #FFF;
+        font: 14px;
     }
     
     BaseFunction{
@@ -91,8 +117,8 @@ stylesheet = """
     QPushButton{
         color: #ffffff;
         background-color: #337190;
-        border:2px solid #1d4274;
-        border-radius: 5px;
+        border:1px solid #1d4274;
+        border-radius: 2px;
         font-size: 16px
              }
     QPushButton[img=True]{

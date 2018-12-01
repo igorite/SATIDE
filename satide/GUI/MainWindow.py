@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import *
 import os
 from satide.BlockCreator.Functions.LoopFunctions.LoopFunctions import ForBlock
 from satide.BlockCreator.BlockCreatorFrame import BlockCreatorFrame
+from satide.GUI.Project.PopUpProject import PopUpProject
 
 class MainWindow(QMainWindow):
 
@@ -135,6 +136,10 @@ class MainWindow(QMainWindow):
         self.steps.hide()
         self.central_frame_layout.addWidget(self.mdi_frame)
         self.mdi_frame.show()
+
+        self.project = PopUpProject()
+
+        self.project.show()
 
     def show_block_creator(self):
         self.central_frame_layout.removeWidget(self.mdi_frame)
