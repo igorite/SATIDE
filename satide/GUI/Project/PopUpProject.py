@@ -64,11 +64,13 @@ class PopUpProject(PopUpWindow):
             os.makedirs(directory+"/Functions")
             os.makedirs(directory+"/Test cases")
 
-        project = """
-project_name = """ + name + """
-path = """ + path + """
-        """
+        data = [
+            ["project_name", name],
+            ["path",path]
+
+        ]
 
         with open(directory + "/main.py", "w") as file:
-            file.write(project)
+            for element in data:
+                file.write(element[0]+" = " + element[1]+"\n")
         self.close()
