@@ -29,6 +29,6 @@ class BlockCreatorFunctions(QFrame):
     def add_func(self, object):
 
         if object == "for_block":
-            for_block = ForBlock()
+            for_block = ForBlock(self.parent.block_id)
             self.view.add_function(for_block)
 

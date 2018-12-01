@@ -141,5 +141,3 @@ class MainWindow(QMainWindow):
         self.mdi_frame.hide()
         self.central_frame_layout.addWidget(self.steps)
         self.steps.show()
-        block = ForBlock()
-        self.steps_layout.addWidget(block)

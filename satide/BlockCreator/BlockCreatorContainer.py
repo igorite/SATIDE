@@ -13,7 +13,8 @@ class BlockCreatorContainer(QFrame):
         # Initial Configuration
         QFrame.__init__(self)
         self.parent = parent
-
+        self.blocks = []
+        self.block_id = 0
         self.setObjectName("block_creator")
         self.layout = QGridLayout()
         self.setLayout(self.layout)
@@ -28,3 +29,9 @@ class BlockCreatorContainer(QFrame):
 
         self.functions.load()
         self.view.load()
+
+    def get_block(self, block_id):
+        for block in self.blocks:
+            if block[0] == block_id:
+                return block[1]
+

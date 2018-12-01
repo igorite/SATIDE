@@ -6,17 +6,12 @@ from satide.Core.Data import *
 
 class BaseFunction(QFrame):
 
-    def __init__(self):
+    def __init__(self, block_id):
         QFrame.__init__(self)
 
     def mousePressEvent(self, event):
-        self.oldPos = event.globalPos()
+        pass
 
-
-    def mouseMoveEvent(self, event):
-        delta = QPoint(event.globalPos() - self.oldPos)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.oldPos = event.globalPos()
 
 class BaseVariable(QFrame):
 

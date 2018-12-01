@@ -7,9 +7,10 @@ from satide.BlockCreator.Functions.BaseFunctions import BaseVariable,BaseFunctio
 
 class ForBlock(BaseFunction):
 
-    def __init__(self):
-        BaseFunction.__init__(self)
+    def __init__(self, block_id):
+        BaseFunction.__init__(self, block_id)
         self.distance = 70
+        self.id = block_id
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
@@ -17,6 +18,13 @@ class ForBlock(BaseFunction):
         self.setMaximumSize(self.distance * 4, self.distance * 2)
         self.block_title()
 
+    def mousePressEvent(self, event):
+        mimeData = QMimeData()
+        mimeData.setText("ForBlock")
+
+        drag = QDrag(self)
+        drag.setMimeData(mimeData)
+        print(event)
 
     def block_title(self):
         self.title = QFrame()

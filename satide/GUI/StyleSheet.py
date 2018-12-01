@@ -29,6 +29,18 @@ stylesheet = """
         border: 2px solid white
     }
     
+    CentralCodeFrame{
+        border: 2px solid white;
+        background-color: #222222;
+        border-radius: 50px
+    }
+    
+    QLabel#row_number{
+        color:#CCC;
+        font: bold 60px;
+        text-align:right
+    }
+    
     BaseVariable{
         background-color: #202080;
         border: 1px solid white;
