@@ -45,6 +45,7 @@ class MainWindow(QMainWindow):
         self.bar.setMaximumHeight(60)
         self.bar.setObjectName("bar")
         self.bar_layout = QGridLayout()
+        self.bar_layout.setColumnStretch(3,50)
         self.create_bar()
 
         # Create central frame
@@ -78,12 +79,14 @@ class MainWindow(QMainWindow):
 
         # Create test case creator
         self.blocks_button = QPushButton("oops")
+        self.blocks_button.setMaximumSize(QSize(80,30))
         self.blocks_button.clicked.connect(self.show_test_case_creator)
         self.bar_layout.addWidget(self.blocks_button, 0, 0)
 
 
         # create Block creator
         self.steps_button = QPushButton("Steps")
+        self.steps_button.setMaximumSize(QSize(80, 30))
         self.steps_button.clicked.connect(self.show_block_creator)
         self.bar_layout.addWidget(self.steps_button, 0, 1)
 

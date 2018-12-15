@@ -1,5 +1,7 @@
 
 links = []
+project_path = ""
+project_name = ""
 
 
 def remove_links_by_id(block_id):
@@ -9,5 +11,3 @@ def remove_links_by_id(block_id):
                 links.remove(link)
             if link[1] == block_id:
                 links.remove(link)
-
-

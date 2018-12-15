@@ -1,6 +1,4 @@
-stylesheet = """
-
-    
+stylesheet = """    
     QMdiSubWindow{
         background-color: transparent
              }
@@ -16,7 +14,9 @@ stylesheet = """
     }
     
     PopUpWindow{
-        background-color: #222;
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+         stop:1 rgba(36,63,86,255), stop:0 rgba(65,95,118, 255));
+        border: 20px solid black;
     }
     
     QLabel#pop_up_title {
@@ -24,12 +24,18 @@ stylesheet = """
     }
     
     QFrame#pop_up_title_bar{
-        background-color: #111;
+         background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+         stop:1 rgba(10, 10, 10, 250), stop:0 rgba(25, 25, 25, 250));
         font: bold 16px;
+        border: 1px solid #111;
+    }
+    
+    QFrame#pop_up_main_frame{
+        border: 1px solid #111;
     }
     
     QPushButton#close{
-        background-color: #111;
+        background-color: transparent;
         border: 0px solid black
     }
     
@@ -38,6 +44,11 @@ stylesheet = """
         background-color: #444;
         color: #FFF;
         font: 14px;
+    }
+    
+    QLineEdit:hover{
+        border:2px solid #337190;
+        border-radius:4px;
     }
     
     BaseFunction{
@@ -116,13 +127,27 @@ stylesheet = """
              
     QPushButton{
         color: #ffffff;
-        background-color: #337190;
-        border:1px solid #1d4274;
+        background-color: #333;
+        border:1px solid #666;
         border-radius: 2px;
-        font-size: 16px
+        font-size: 16px;
+        padding: 3px;
              }
+             
+    QPushButton:hover{
+        color: #ffffff;
+        background-color: #444;
+        border:2px solid #337190;
+        border-radius: 4px;
+        font-size: 16px
+             }         
+    
     QPushButton[img=True]{
         background-color : transparent;
+    }
+    
+    QPushButton:hover[img=True]{
+        background-color : #666;
     }
     QPushButton[connect=True]{
         background-color : transparent
@@ -132,12 +157,7 @@ stylesheet = """
         text-align: left;
         background-color : transparent;
     }
-    
-    
-    QPushButton:hover[connect=True]{
-        background-color : transparent
-    }   
-             
+         
     QToolBar{
             border:2px solid #999999;
             border-radius: 10px;

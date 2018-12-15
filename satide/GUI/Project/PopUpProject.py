@@ -1,7 +1,6 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from satide.GUI.StyleSheet import stylesheet
 from satide.GUI.PopUpWindow import PopUpWindow
 import os
 
@@ -12,8 +11,10 @@ class PopUpProject(PopUpWindow):
         PopUpWindow.__init__(self)
 
         self.setMinimumWidth(500)
-        self.main_frame.setMinimumHeight(200)
+        self.main_frame.setMinimumHeight(150)
         self.layout = QGridLayout()
+        self.layout.setColumnStretch(2, 2)
+        self.layout.setColumnStretch(1, 20)
         self.setLayout(self.layout)
         self.setTitle("Create Project")
 
@@ -31,11 +32,12 @@ class PopUpProject(PopUpWindow):
 
         self.browse_button = QPushButton("Browse...")
         self.browse_button.clicked.connect(self.search_path)
-        self.layout.addWidget(self.browse_button)
+        self.layout.addWidget(self.browse_button, 1, 2)
 
-        self.ok_button = QPushButton("OK")
+
+        self.ok_button = QPushButton("Create")
         self.ok_button.clicked.connect(self.create_project)
-        self.layout.addWidget(self.ok_button)
+        self.layout.addWidget(self.ok_button, 2, 2)
 
         self.file_explorer = QFileDialog()
         self.file_explorer.setFileMode(QFileDialog.Directory)
@@ -62,11 +64,11 @@ class PopUpProject(PopUpWindow):
         if not os.path.exists(directory):
             os.makedirs(directory)
             os.makedirs(directory+"/Functions")
-            os.makedirs(directory+"/Test cases")
+            os.makedirs(directory+"/Test")
 
         data = [
             ["project_name", name],
-            ["path",path]
+            ["path", path]
 
         ]
 

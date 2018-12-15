@@ -2,6 +2,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import numpy as np
 from satide.Blocks.Block import Block
+from satide.Core.Data import links
 
 from PyQt5.QtWidgets import *
 
@@ -14,7 +15,7 @@ class BlockContainer(QMdiArea):
         self.link_status = False
         self.link_status_id = None
         self.cursor = None
-        self.links = []
+        self.links = links
         self.links_id = 0
         self.id = 0
         self.paint = 0
@@ -124,9 +125,14 @@ class BlockContainer(QMdiArea):
             for link in self.links:
                 if link[0] == self.link_status_id:
                     link[1] = block_id
+                    self.save_links()
             self.link_status_id = None
             self.link_status = False
 
+
+    def save_links(self):
+        block_links = self.links
+        print(block_links)
 
 
     def mousePressEvent(self, event):

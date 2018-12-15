@@ -43,6 +43,7 @@ class PopUpWindow(QWidget):
         self.layout.addWidget(self.title_bar, 0, 0)
 
         self.main_frame = QFrame()
+        self.main_frame.setObjectName("pop_up_main_frame")
         self.layout.addWidget(self.main_frame, 1, 0)
 
         super().setLayout(self.layout)

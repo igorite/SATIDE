@@ -22,7 +22,3 @@ class BlockCreatorFrame(QFrame):
         # Add Block Creator Container
         self.creator_container = BlockCreatorContainer(self)
         self.layout.addWidget(self.creator_container, 0, 1)
-
-
-
- 
